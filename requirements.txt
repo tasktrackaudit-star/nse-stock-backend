@@ -1,0 +1,6 @@
+yfinance>=0.2.38
+numpy
+pandas
+scikit-learn
+torch --index-url https://download.pytorch.org/whl/cpu
+prophet
