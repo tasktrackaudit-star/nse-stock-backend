@@ -745,7 +745,11 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Headers","*")
         self.send_header("Access-Control-Allow-Methods","GET, OPTIONS")
         self.send_header("Content-Length",str(len(body)))
-        self.end_headers(); self.wfile.write(body)
+        self.end_headers()
+try:
+    self.wfile.write(body)
+except BrokenPipeError:
+    print("[WARN] Client disconnected before response sent")
     def do_OPTIONS(self):
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin","*")
